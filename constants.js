@@ -1,3 +1,6 @@
+// Storage
+const env = {};
+
 // Standard library
 const stl = {
   jama: (a, b) => a + b,
@@ -7,5 +10,6 @@ const stl = {
 };
 
 module.exports = {
+  env,
   stl,
 };
