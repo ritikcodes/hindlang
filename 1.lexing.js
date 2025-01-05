@@ -1,5 +1,13 @@
 const { stl } = require("./constants");
 
+const isString = (token) => {
+  return (
+    typeof token === "string" &&
+    token !== "" &&
+    token[0] === "'" &&
+    token[token.length - 1] === "'"
+  );
+};
 // 1. Lexing: Tokenize the code input
 function getTokenProperties(token) {
   if (Number(token)) {
@@ -13,6 +21,9 @@ function getTokenProperties(token) {
     return { type: "Function", value: token };
   }
 
+  if (isString(token)) {
+    return { type: "String", value: token };
+  }
   if (token === "barabar") {
     return { type: "VariableDeclaration", value: token };
   }
@@ -35,7 +46,6 @@ function tokenize(code) {
 
   return tokens;
 }
-
 module.exports = {
   tokenize,
 };

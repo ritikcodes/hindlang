@@ -1,3 +1,5 @@
+const { tokenize } = require("./1.lexing");
+
 // 2. Syntactic analysis: Build the AST
 function getAST(tokens) {
   let index = 0;
@@ -14,6 +16,10 @@ function getAST(tokens) {
         ast.type = "VariableDeclaration";
         ast.name = tokens[index].value;
         ast.arguments = arguments;
+        index++;
+      }
+      if (tokens[index].type === "String") {
+        arguments.push(tokens[index]);
         index++;
       }
       if (
@@ -40,5 +46,4 @@ function getAST(tokens) {
 
   return helperFunction(tokens);
 }
-
 module.exports = { getAST };
